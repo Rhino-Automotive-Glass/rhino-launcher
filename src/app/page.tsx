@@ -40,6 +40,16 @@ const apps = [
     iconBg: "bg-sky-500/10",
     iconColor: "text-sky-400",
   },
+  {
+    name: "Rhino Access",
+    url: "https://rhino-access.vercel.app/",
+    description: "User & permission management",
+    accent: "#f43f5e",
+    shadow: "rgba(244,63,94,.18)",
+    border: "rgba(244,63,94,.45)",
+    iconBg: "bg-rose-500/10",
+    iconColor: "text-rose-400",
+  },
 ];
 
 /* ─── small stroke icons ─── */
@@ -77,8 +87,16 @@ function IconTrend({ className }: { className?: string }) {
     </svg>
   );
 }
+function IconShield({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <polyline points="9 12 11 14 15 10" />
+    </svg>
+  );
+}
 
-const icons = [IconTarget, IconCode, IconGrid, IconTrend];
+const icons = [IconTarget, IconCode, IconGrid, IconTrend, IconShield];
 
 /* ─── page ─── */
 export default function Home() {
