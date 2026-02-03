@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f172a;
+  --foreground: #f1f5f9;
 }
 
 @theme inline {
@@ -12,15 +12,133 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ─── Background grid ─── */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* ─── Floating blobs ─── */
+@keyframes blob-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-40px, -50px) scale(1.08); }
+}
+@keyframes blob-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(45px, 35px) scale(0.95); }
+}
+@keyframes blob-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-25px, 40px) scale(1.04); }
+}
+
+.blob-a { animation: blob-a 18s ease-in-out infinite; }
+.blob-b { animation: blob-b 22s ease-in-out infinite; animation-delay: -8s; }
+.blob-c { animation: blob-c 15s ease-in-out infinite; animation-delay: -5s; }
+
+/* ─── Card entrance ─── */
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-rise {
+  animation: card-rise 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ─── Glassmorphism app card ─── */
+.app-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 1.125rem;
+  text-decoration: none;
+  overflow: hidden;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background-color 0.35s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* top accent glow line */
+.app-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
+  opacity: 0.55;
+}
+
+/* subtle inner gradient that intensifies on hover */
+.app-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at top, color-mix(in srgb, var(--card-accent) 6%, transparent), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.app-card:hover {
+  border-color: var(--card-border);
+  box-shadow:
+    0 0 0 1px var(--card-border),
+    0 8px 40px var(--card-shadow),
+    0 0 80px var(--card-shadow);
+  background: rgba(30, 41, 59, 0.6);
+  transform: translateY(-4px);
+}
+
+.app-card:hover::after {
+  opacity: 1;
+}
+
+/* title & arrow transitions live here so they can reference the CSS var */
+.card-title {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+.app-card:hover .card-title {
+  color: var(--card-accent);
+}
+
+.card-arrow {
+  position: relative;
+  z-index: 1;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.3s ease;
+}
+.app-card:hover .card-arrow {
+  transform: translate(3px, -3px);
+  color: var(--card-accent);
+}
+
+/* ─── Gradient heading ─── */
+.gradient-heading {
+  background: linear-gradient(120deg, #f1f5f9 25%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

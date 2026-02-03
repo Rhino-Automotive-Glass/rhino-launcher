@@ -1,65 +1,193 @@
-import Image from "next/image";
+/* ─── per-app colour theme ─── */
+const apps = [
+  {
+    name: "Rhino Origin",
+    url: "https://rhino-origin.vercel.app/",
+    description: "Core origin management platform",
+    accent: "#f59e0b",
+    shadow: "rgba(245,158,11,.18)",
+    border: "rgba(245,158,11,.45)",
+    iconBg: "bg-amber-500/10",
+    iconColor: "text-amber-400",
+  },
+  {
+    name: "Rhino Code",
+    url: "https://rhino-product-code-description.vercel.app/",
+    description: "Product code & descriptions",
+    accent: "#10b981",
+    shadow: "rgba(16,185,129,.18)",
+    border: "rgba(16,185,129,.45)",
+    iconBg: "bg-emerald-500/10",
+    iconColor: "text-emerald-400",
+  },
+  {
+    name: "Rhino Catalog",
+    url: "https://rhinoaglass.vercel.app/",
+    description: "Product catalog management",
+    accent: "#8b5cf6",
+    shadow: "rgba(139,92,246,.18)",
+    border: "rgba(139,92,246,.45)",
+    iconBg: "bg-violet-500/10",
+    iconColor: "text-violet-400",
+  },
+  {
+    name: "Rhino Stock",
+    url: "https://rhino-stock.vercel.app/",
+    description: "Inventory & stock tracking",
+    accent: "#0ea5e9",
+    shadow: "rgba(14,165,233,.18)",
+    border: "rgba(14,165,233,.45)",
+    iconBg: "bg-sky-500/10",
+    iconColor: "text-sky-400",
+  },
+];
 
+/* ─── small stroke icons ─── */
+function IconTarget({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+function IconCode({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  );
+}
+function IconGrid({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="7" height="7" rx="1" />
+      <rect x="14" y="3" width="7" height="7" rx="1" />
+      <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
+    </svg>
+  );
+}
+function IconTrend({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+      <polyline points="17 6 23 6 23 12" />
+    </svg>
+  );
+}
+
+const icons = [IconTarget, IconCode, IconGrid, IconTrend];
+
+/* ─── page ─── */
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      {/* ── animated background ── */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {/* grid */}
+        <div className="absolute inset-0 bg-grid" />
+
+        {/* blobs */}
+        <div
+          className="blob-a absolute rounded-full bg-amber-500 opacity-[0.13]"
+          style={{ top: "-180px", left: "-140px", width: "580px", height: "580px", filter: "blur(100px)" }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <div
+          className="blob-b absolute rounded-full bg-violet-500 opacity-[0.11]"
+          style={{ bottom: "-120px", right: "-100px", width: "520px", height: "520px", filter: "blur(110px)" }}
+        />
+        <div
+          className="blob-c absolute rounded-full bg-sky-500 opacity-[0.09]"
+          style={{ top: "38%", left: "52%", width: "420px", height: "420px", filter: "blur(120px)" }}
+        />
+      </div>
+
+      {/* ── layered content ── */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* header */}
+        <header className="border-b border-slate-800/50 px-6 py-6">
+          <div className="max-w-4xl mx-auto flex items-center gap-4">
+            {/* glowing badge */}
+            <div className="relative shrink-0">
+              <div
+                className="absolute rounded-lg bg-amber-500 opacity-45"
+                style={{ inset: "-4px", filter: "blur(10px)" }}
+              />
+              <div className="relative w-11 h-11 bg-amber-500 rounded-lg flex items-center justify-center">
+                <span className="text-slate-950 font-bold text-xl">R</span>
+              </div>
+            </div>
+            <div>
+              <h1 className="text-lg font-bold tracking-widest text-white uppercase">Rhino</h1>
+              <p className="text-xs text-slate-500 tracking-widest uppercase">Automotive Glass</p>
+            </div>
+          </div>
+        </header>
+
+        {/* main */}
+        <main className="flex-1 px-6 py-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="gradient-heading text-4xl font-bold mb-2">
+              App Launcher
+            </h2>
+            <p className="text-slate-500 mb-10">
+              Access all Rhino internal applications from one place.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {apps.map((app, i) => {
+                const Icon = icons[i];
+                return (
+                  <a
+                    key={app.name}
+                    href={app.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="app-card card-rise"
+                    style={{
+                      animationDelay: `${i * 0.09}s`,
+                      "--card-accent": app.accent,
+                      "--card-shadow": app.shadow,
+                      "--card-border": app.border,
+                    } as React.CSSProperties}
+                  >
+                    {/* icon row */}
+                    <div className="flex items-start justify-between">
+                      <div className={`relative z-10 w-12 h-12 rounded-xl ${app.iconBg} border border-white/10 flex items-center justify-center`}>
+                        <Icon className={`w-5 h-5 ${app.iconColor}`} />
+                      </div>
+
+                      {/* diagonal arrow */}
+                      <svg className="card-arrow w-5 h-5 text-slate-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7v10" />
+                      </svg>
+                    </div>
+
+                    {/* text */}
+                    <div className="relative z-10">
+                      <h3 className="card-title text-base font-semibold text-white">
+                        {app.name}
+                      </h3>
+                      <p className="text-sm text-slate-500 mt-0.5">
+                        {app.description}
+                      </p>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </main>
+
+        {/* footer */}
+        <footer className="border-t border-slate-800/50 px-6 py-5">
+          <p className="max-w-4xl mx-auto text-xs text-slate-600 text-center">
+            © 2026 Rhino Automotive Glass · Internal use only
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        </footer>
+      </div>
     </div>
   );
 }
