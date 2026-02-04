@@ -1,3 +1,4 @@
+import Image from "next/image";
 /* ─── per-app colour theme ─── */
 const apps = [
   {
@@ -107,6 +108,18 @@ export default function Home() {
         {/* grid */}
         <div className="absolute inset-0 bg-grid" />
 
+        {/* rhino logo watermark */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Image
+            src="/rhino-logo.png"
+            alt=""
+            width={480}
+            height={480}
+            className="opacity-[0.06]"
+            priority
+          />
+        </div>
+
         {/* blobs */}
         <div
           className="blob-a absolute rounded-full bg-amber-500 opacity-[0.13]"
@@ -127,15 +140,13 @@ export default function Home() {
         {/* header */}
         <header className="border-b border-slate-800/50 px-6 py-6">
           <div className="max-w-4xl mx-auto flex items-center gap-4">
-            {/* glowing badge */}
+            {/* logo */}
             <div className="relative shrink-0">
               <div
-                className="absolute rounded-lg bg-amber-500 opacity-45"
+                className="absolute rounded-full bg-blue-600 opacity-30"
                 style={{ inset: "-4px", filter: "blur(10px)" }}
               />
-              <div className="relative w-11 h-11 bg-amber-500 rounded-lg flex items-center justify-center">
-                <span className="text-slate-950 font-bold text-xl">R</span>
-              </div>
+              <Image src="/rhino-logo.png" alt="Rhino" width={44} height={44} className="relative" priority />
             </div>
             <div>
               <h1 className="text-lg font-bold tracking-widest text-white uppercase">Rhino</h1>
