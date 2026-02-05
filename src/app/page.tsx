@@ -23,7 +23,7 @@ const apps = [
   },
   {
     name: "Rhino Catalog",
-    url: "https://rhinoaglass.vercel.app/",
+    url: "https://rhinoautoglass.mx/",
     description: "Product catalog management",
     accent: "#8b5cf6",
     shadow: "rgba(139,92,246,.18)",
