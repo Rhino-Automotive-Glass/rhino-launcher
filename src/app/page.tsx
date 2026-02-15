@@ -51,6 +51,16 @@ const apps = [
     iconBg: "bg-rose-500/10",
     iconColor: "text-rose-400",
   },
+  {
+    name: "Rhino Plan",
+    url: "https://rhino-plan.vercel.app",
+    description: "Plan the production",
+    accent: "#6366f1",
+    shadow: "rgba(99,102,241,.18)",
+    border: "rgba(99,102,241,.45)",
+    iconBg: "bg-indigo-500/10",
+    iconColor: "text-indigo-400",
+  },
 ];
 
 /* ─── small stroke icons ─── */
@@ -96,8 +106,18 @@ function IconShield({ className }: { className?: string }) {
     </svg>
   );
 }
+function IconCalendar({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  );
+}
 
-const icons = [IconTarget, IconCode, IconGrid, IconTrend, IconShield];
+const icons = [IconTarget, IconCode, IconGrid, IconTrend, IconShield, IconCalendar];
 
 /* ─── page ─── */
 export default function Home() {
