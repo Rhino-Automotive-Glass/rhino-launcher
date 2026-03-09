@@ -61,6 +61,16 @@ const apps = [
     iconBg: "bg-indigo-500/10",
     iconColor: "text-indigo-400",
   },
+  {
+    name: "Rhino Catalog Admin",
+    url: "https://rhino-catalog.vercel.app",
+    description: "Catalog administration portal",
+    accent: "#14b8a6",
+    shadow: "rgba(20,184,166,.18)",
+    border: "rgba(20,184,166,.45)",
+    iconBg: "bg-teal-500/10",
+    iconColor: "text-teal-400",
+  },
 ];
 
 /* ─── small stroke icons ─── */
@@ -116,8 +126,20 @@ function IconCalendar({ className }: { className?: string }) {
     </svg>
   );
 }
+function IconCatalogAdmin({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="17.5" cy="6.5" r="2.5" />
+      <path d="M14.5 12c.6-1.7 1.8-2.8 3-2.8s2.4 1.1 3 2.8" />
+      <rect x="3" y="5" width="11" height="14" rx="2" />
+      <line x1="6.5" y1="9" x2="10.5" y2="9" />
+      <line x1="6.5" y1="12" x2="10.5" y2="12" />
+      <line x1="6.5" y1="15" x2="9.5" y2="15" />
+    </svg>
+  );
+}
 
-const icons = [IconTarget, IconCode, IconGrid, IconTrend, IconShield, IconCalendar];
+const icons = [IconTarget, IconCode, IconGrid, IconTrend, IconShield, IconCalendar, IconCatalogAdmin];
 
 /* ─── page ─── */
 export default function Home() {
@@ -159,7 +181,7 @@ export default function Home() {
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* header */}
         <header className="border-b border-slate-800/50 px-6 py-6">
-          <div className="max-w-4xl mx-auto flex items-center gap-4">
+          <div className="max-w-6xl mx-auto flex items-center gap-4">
             {/* logo */}
             <div className="relative shrink-0">
               <div
@@ -176,8 +198,8 @@ export default function Home() {
         </header>
 
         {/* main */}
-        <main className="flex-1 px-6 py-16">
-          <div className="max-w-4xl mx-auto">
+        <main className="flex-1 px-6 py-6">
+          <div className="max-w-6xl mx-auto">
             <h2 className="gradient-heading text-4xl font-bold mb-2">
               App Launcher
             </h2>
@@ -185,7 +207,7 @@ export default function Home() {
               Access all Rhino internal applications from one place.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
               {apps.map((app, i) => {
                 const Icon = icons[i];
                 return (
@@ -232,7 +254,7 @@ export default function Home() {
 
         {/* footer */}
         <footer className="border-t border-slate-800/50 px-6 py-5">
-          <p className="max-w-4xl mx-auto text-xs text-slate-600 text-center">
+          <p className="max-w-6xl mx-auto text-xs text-slate-600 text-center">
             © 2026 Rhino Automotive Glass · Internal use only
           </p>
         </footer>
